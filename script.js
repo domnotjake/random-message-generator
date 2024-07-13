@@ -42,14 +42,46 @@ let adverbs = [
     "arrogantly"
 ];
 
-let noun = nouns[Math.floor(Math.random() * nouns.length)];
-let name1 = names[Math.floor(Math.random() * names.length)];
-let adverb = "";
-let verbStem1 = verbStems[Math.floor(Math.random() * verbStems.length)];
-let verbStem2 = verbStems[Math.floor(Math.random() * verbStems.length)];
-let verbStem3 = verbStems[Math.floor(Math.random() * verbStems.length)];
-let verbStem4 = verbStems[Math.floor(Math.random() * verbStems.length)];
-let moral = morals[Math.floor(Math.random() * morals.length)];
+const returnRandomNoun = () => {
+    return nouns[Math.floor(Math.random() * nouns.length)];
+};
+
+const removeElementFromArray = (array, arrayElementToRemove) => {
+    const index = array.indexOf(arrayElementToRemove);
+    let newArray = array;
+
+    if (index > -1) { // only splice array when item is found
+        newArray.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    return newArray;    
+};
+
+const returnRandomVerbStem = () => {
+    randomVerbStem = verbStems[Math.floor(Math.random() * verbStems.length)];
+    verbStems = removeElementFromArray(verbStems, randomVerbStem);  // Remove it so it isn't picked again
+    return randomVerbStem;
+};
+
+const returnRandomName = () => {
+    return names[Math.floor(Math.random() * names.length)]
+};
+
+const returnRandomAdverb = () => {
+    return adverbs[Math.floor(Math.random() * adverbs.length)];
+};
+
+const returnRandomMoral = () => {
+    return morals[Math.floor(Math.random() * morals.length)];
+};
+
+let noun = returnRandomNoun();
+let name1 = returnRandomName();
+let adverb = returnRandomAdverb();
+let verbStem1 = returnRandomVerbStem();
+let verbStem2 = returnRandomVerbStem();
+let verbStem3 = returnRandomVerbStem();
+let verbStem4 = returnRandomVerbStem();
+let moral = returnRandomMoral();
 
 let finalStory = `
     I was ${verbStem1}ing the other day, and my ${noun} ${name1} started ${verbStem2}ing. 
